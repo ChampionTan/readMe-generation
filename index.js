@@ -1,8 +1,10 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
+const pageGenerator = require('./generateMarkdown.js');
 
-inquirer
-  .prompt([
+const userInfo = () => {
+return inquirer
+	.prompt([
     {
       type: 'input',
       message: 'What is your projects title?',
@@ -82,6 +84,23 @@ inquirer
 		  }
 	}
 ])
-.then((response) =>
-fs.appendFile('READMEtest.me', `${JSON.stringify(response)}\n`, (err) => err ? console.log('error') : console.log('submitted'))
-);
+};
+
+const appendFile = data => {
+	fs.appendFile('ProjREADME.md', data, err => {
+		if (err) {
+			console.log(err);
+			return;
+		}else {
+			console.log('Created ReadMe')
+		}
+	})
+};
+
+userInfo()
+.then(userInput => {
+	return pageGenerator(userInput);
+})
+.then(data => {
+	return appendFile(data);
+});
