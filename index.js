@@ -82,7 +82,40 @@ return inquirer
 				return false;
 			}
 		  }
-	}
+	},
+	{
+		type: 'input',
+		message: 'please choose a license',
+		name: 'license',
+		choices: ['MIT', 'ISC', 'Mozilla Public License 2.0'],
+		default: 'MIT'
+	},
+	{
+	type: 'input',
+      message: 'What is your GitHub username?',
+      name: 'githubUsername',
+	  validate: input => {
+		if (input) {
+			return true;
+		} else {
+			console.log('please input your GitHub username');
+			return false;
+		}
+	  }
+    },
+	{
+		type: 'input',
+      message: 'What is your email?',
+      name: 'userEmail',
+	  validate: input => {
+		if (input) {
+			return true;
+		} else {
+			console.log('please input your Email');
+			return false;
+		}
+	  }
+    },
 ])
 };
 
