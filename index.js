@@ -119,8 +119,8 @@ return inquirer
 ])
 };
 
-const appendFile = data => {
-	fs.appendFile('ProjREADME.md', data, err => {
+const writeFile = data => {
+	fs.writeFile('ProjREADME.md', data, err => {
 		if (err) {
 			console.log(err);
 			return;
@@ -135,5 +135,5 @@ userInfo()
 	return pageGenerator(userInput);
 })
 .then(data => {
-	return appendFile(data);
+	return writeFile(data);
 });
